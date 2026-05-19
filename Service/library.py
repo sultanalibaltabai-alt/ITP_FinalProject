@@ -52,3 +52,23 @@ class Library:
         user.return_book(book_id)
         print(f"'{book.get_title()}' successfully returned by {user.get_name()}.")
         return True
+
+    def get_available_books(self):
+        for book in self.books.values():
+            if book.is_available():
+                yield book
+
+    def get_borrowed_books(self):
+        for book in self.books.values():
+            if not book.is_available():
+                yield book
+
+    def get_available_books(self):
+        for book in self.books.values():
+            if book.is_available():
+                yield book
+
+    def get_borrowed_books(self):
+        for book in self.books.values():
+            if not book.is_available():
+                yield book
