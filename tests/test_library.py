@@ -52,3 +52,44 @@ class TestAdmin(unittest.TestCase):
         admin = Admin(1, "Bob")
         result = admin.to_dict()
         self.assertEqual(result["role"], "admin")
+class TestLibrary(unittest.TestCase):
+
+    def setUp(self):
+        books = [
+            Book(1, "Clean Code", "Robert Martin", True),
+            Book(2, "Python Crash Course", "Eric Mattes", False)
+        ]
+        users = [
+            User(1, "Alice", [2]),
+            User(2, "Bob")
+        ]
+        self.library = Library(books, users)
+
+    def test_borrow_available_book(self):
+        result = self.library.borrow_book(2, 1)
+        self.assertTrue(result)
+
+    def test_borrow_unavailable_book(self):
+        result = self.library.borrow_book(2, 2)
+        self.assertFalse(result)
+
+    def test_return_book(self):
+        result = self.library.return_book(1, 2)
+        self.assertTrue(result)
+
+    def test_borrow_nonexistent_book(self):
+        result = self.library.borrow_book(1, 999)
+        self.assertFalse(result)
+
+    def test_borrow_nonexistent_user(self):
+        result = self.library.borrow_book(999, 1)
+        self.assertFalse(result)
+
+    def test_get_available_books(self):
+        available = list(self.library.get_available_books())
+        self.assertEqual(len(available), 1)
+        self.assertEqual(available[0].get_id(), 1)
+
+
+if name == "__main__":
+    unittest.main()
