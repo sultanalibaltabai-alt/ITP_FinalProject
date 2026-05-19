@@ -29,5 +29,5 @@ class Book:
         }
 
     def __str__(self):
-        status = "Available"
+        status = "Available" if self.__available else "Borrowed"
         return f"[{self.__book_id}] '{self.__title}' by {self.__author} - {status}"
