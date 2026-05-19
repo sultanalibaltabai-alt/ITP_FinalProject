@@ -72,3 +72,23 @@ class Library:
         for book in self.books.values():
             if not book.is_available():
                 yield book
+
+    def get_user_history(self, user_id):
+        user = self.find_user(user_id)
+        if user is None:
+            print("User not found.")
+            return []
+
+        borrowed_ids = user.get_borrowed_books()
+        result = []
+        for book_id in borrowed_ids:
+            book = self.find_book(book_id)
+            if book:
+                result.append(book)
+        return result
+
+    def get_all_books(self):
+        return list(self.books.values())
+
+    def get_all_users(self):
+        return list(self.users.values())
