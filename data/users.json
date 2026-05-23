@@ -1,0 +1,5 @@
+[
+    {"user_id": 1, "name": "Alice", "borrowed_books": [2]},
+    {"user_id": 2, "name": "Bob", "borrowed_books": []},
+    {"user_id": 3, "name": "Admin", "borrowed_books": [], "role": "admin"}
+]
