@@ -91,5 +91,5 @@ class TestLibrary(unittest.TestCase):
         self.assertEqual(available[0].get_id(), 1)
 
 
-if name == "__main__":
+if __name__ == "__main__":
     unittest.main()
